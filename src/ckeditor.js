@@ -67,23 +67,32 @@ ClassicEditor.builtinPlugins = [
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
+	title: {
+		placeholder: 'Title ...'
+	},
+	placeholder: 'Body ...',
 	toolbar: {
 		items: [
 			'heading',
 			'|',
 			'bold',
 			'italic',
-			'link',
+			'underline',
+			'horizontalLine',
+			'|',
 			'bulletedList',
 			'numberedList',
-			'|',
-			'indent',
-			'outdent',
-			'|',
-			'imageUpload',
 			'blockQuote',
-			'insertTable',
+			'|',
+			'outdent',
+			'indent',
+			'|',
+			'link',
+			'imageUpload',
+			'imageToolbar',
+			'|',
 			'mediaEmbed',
+			'|',
 			'undo',
 			'redo'
 		]
@@ -94,7 +103,14 @@ ClassicEditor.defaultConfig = {
 			'imageStyle:side',
 			'|',
 			'imageTextAlternative'
-		]
+		],
+		resizeUnit: 'px',
+		upload: {
+			types: [ 'png', 'jpeg', 'jpg', 'gif' ]
+		},
+		imageResize: {
+			enable: true
+		},
 	},
 	table: {
 		contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
