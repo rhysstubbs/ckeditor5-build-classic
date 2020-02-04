@@ -27,8 +27,6 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
-import Table from '@ckeditor/ckeditor5-table/src/table';
-import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
 import Title from '@ckeditor/ckeditor5-heading/src/title';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
@@ -58,8 +56,6 @@ ClassicEditor.builtinPlugins = [
 	MediaEmbed,
 	Paragraph,
 	PasteFromOffice,
-	Table,
-	TableToolbar,
 	HorizontalLine,
 	Title,
 	Underline
@@ -89,7 +85,6 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'link',
 			'imageUpload',
-			'imageToolbar',
 			'|',
 			'mediaEmbed',
 			'|',
@@ -111,9 +106,6 @@ ClassicEditor.defaultConfig = {
 		imageResize: {
 			enable: true
 		},
-	},
-	table: {
-		contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
