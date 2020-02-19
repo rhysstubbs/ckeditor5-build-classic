@@ -160,7 +160,7 @@ class UploadAdapter {
 				} );
 			} else if ( response.hasOwnProperty( 'urls' ) ) {
 				resolve( {
-					default: response.url
+					default: response.urls
 				} );
 			}
 		} );
