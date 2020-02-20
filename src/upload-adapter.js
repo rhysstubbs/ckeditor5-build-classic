@@ -25,7 +25,7 @@ import { getCsrfToken } from './utils';
  *
  * @extends module:core/plugin~Plugin
  */
-export default class CustomCKFinderUploadAdapter extends Plugin {
+export default class CKFinderUploadAdapter extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -37,7 +37,7 @@ export default class CustomCKFinderUploadAdapter extends Plugin {
 	 * @inheritDoc
 	 */
 	static get pluginName() {
-		return 'CustomCKFinderUploadAdapter';
+		return 'CKFinderUploadAdapter';
 	}
 
 	/**
@@ -83,6 +83,7 @@ class CustomUploadAdapter {
 		 * @member {String} #url
 		 */
 		this.url = url;
+		// eslint-disable-next-line no-undef
 		console.log( 'Upload URL:', url );
 
 		/**
