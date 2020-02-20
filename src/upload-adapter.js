@@ -83,6 +83,7 @@ class CustomUploadAdapter {
 		 * @member {String} #url
 		 */
 		this.url = url;
+		console.log( 'Upload URL:', url );
 
 		/**
 		 * Locale translation method.

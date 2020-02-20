@@ -37,6 +37,7 @@ export default class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
+	CustomCKFinderUploadAdapter,
 	Essentials,
 	Autoformat,
 	Bold,
@@ -60,10 +61,6 @@ ClassicEditor.builtinPlugins = [
 	HorizontalLine,
 	Title,
 	Underline
-];
-
-ClassicEditor.extraPlugins = [
-	CustomCKFinderUploadAdapter
 ];
 
 // Editor configuration.
