@@ -31,14 +31,14 @@ import Title from '@ckeditor/ckeditor5-heading/src/title';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 
 // Custom Plugins
-import UploadAdapter from './upload-adapter';
+import CustomCKFinderUploadAdapter from './upload-adapter';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
 	Essentials,
-	UploadAdapter,
+	CustomCKFinderUploadAdapter,
 	Autoformat,
 	Bold,
 	Italic,

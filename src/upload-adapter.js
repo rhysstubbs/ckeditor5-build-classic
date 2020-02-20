@@ -25,7 +25,7 @@ import { getCsrfToken } from './utils';
  *
  * @extends module:core/plugin~Plugin
  */
-export default class CKFinderUploadAdapter extends Plugin {
+export default class CustomCKFinderUploadAdapter extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -51,7 +51,7 @@ export default class CKFinderUploadAdapter extends Plugin {
 		}
 
 		// Register CKFinderAdapter
-		this.editor.plugins.get( FileRepository ).createUploadAdapter = loader => new UploadAdapter( loader, url, this.editor.t );
+		this.editor.plugins.get( FileRepository ).createUploadAdapter = loader => new CustomUploadAdapter( loader, url, this.editor.t );
 	}
 }
 
@@ -61,7 +61,7 @@ export default class CKFinderUploadAdapter extends Plugin {
  * @private
  * @implements module:upload/filerepository~UploadAdapter
  */
-class UploadAdapter {
+class CustomUploadAdapter {
 	/**
 	 * Creates a new adapter instance.
 	 *
