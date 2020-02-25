@@ -109,7 +109,7 @@ ClassicEditor.defaultConfig = {
 			enable: true
 		},
 	},
-	allowedContent: 'div',
+	allowedContent: true,
 	extraAllowedContent: 'div',
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
