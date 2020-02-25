@@ -32,6 +32,7 @@ import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 
 // Custom Plugins
 import CustomCKFinderUploadAdapter from './upload-adapter';
+import ConvertDivAttributes from './allow-div-plugin';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -60,7 +61,8 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	HorizontalLine,
 	Title,
-	Underline
+	Underline,
+	ConvertDivAttributes
 ];
 
 // Editor configuration.
@@ -112,7 +114,3 @@ ClassicEditor.defaultConfig = {
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
 };
-
-ClassicEditor.schema.register( 'div', {
-	allowIn: '$root'
-} );
