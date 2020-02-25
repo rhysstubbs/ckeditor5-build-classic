@@ -33,12 +33,14 @@ import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 // Custom Plugins
 import CustomCKFinderUploadAdapter from './upload-adapter';
 import ConvertDivAttributes from './allow-div-plugin';
+import AllowLinkTarget from './allow-link-target';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
 	CustomCKFinderUploadAdapter,
+	AllowLinkTarget,
 	Essentials,
 	Autoformat,
 	Bold,
