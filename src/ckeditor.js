@@ -26,7 +26,6 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
-import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
 import Title from '@ckeditor/ckeditor5-heading/src/title';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 
@@ -35,6 +34,7 @@ import CustomCKFinderUploadAdapter from './upload-adapter';
 import ConvertDivAttributes from './allow-div-plugin';
 import AllowLinkTarget from './allow-link-target';
 import AddTargetToExternalLinks from './add-target-to-link';
+import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -61,12 +61,12 @@ ClassicEditor.builtinPlugins = [
 	MediaEmbed,
 	Paragraph,
 	PasteFromOffice,
-	HorizontalLine,
 	Title,
 	Underline,
 	ConvertDivAttributes,
 	AddTargetToExternalLinks,
-	AllowLinkTarget
+	AllowLinkTarget,
+	TextTransformation
 ];
 
 // Editor configuration.
