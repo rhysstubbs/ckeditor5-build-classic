@@ -20,10 +20,7 @@ export default class ImageModalEditing extends Plugin {
 		const schema = editor.model.schema;
 
 		schema.extend( 'image', { allowAttributes: 'class' } );
-        let cmd = new ImageModalCommand( editor );
-        console.log("cmd", cmd);
-        editor.commands.add( 'imageModalCmd',  cmd);
-        
-        console.log(editor.commands);
+		const cmd = new ImageModalCommand( editor );
+		editor.commands.add( 'imageModalCmd', cmd );
 	}
 }

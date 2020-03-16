@@ -36,8 +36,6 @@ import ConvertDivAttributes from './plugins/AllowDivPlugin/allow-div-plugin';
 import AllowLinkTarget from './plugins/AllowLinkTargetPlugin/allow-link-target';
 import AddTargetToExternalLinks from './plugins/AddTargetToLinkPlugin/add-target-to-link';
 
-import ImageModal from './plugins/ImageModalPlugin/image-modal';
-
 export default class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
@@ -76,7 +74,7 @@ ClassicEditor.builtinPlugins = [
 // Editor configuration.
 ClassicEditor.defaultConfig = {
 	title: {
-		placeholder: 'Title ...'
+		placeholder: 'Headline ...'
 	},
 	placeholder: 'Body ...',
 	toolbar: {

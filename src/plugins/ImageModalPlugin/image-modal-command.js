@@ -3,11 +3,6 @@ import Command from '@ckeditor/ckeditor5-core/src/command';
 import { isImage } from './utils';
 
 export default class ImageModalCommand extends Command {
-	constructor( editor ) {
-		super( editor );
-		console.log(this);
-	}
-
 	refresh() {
 		const element = this.editor.model.document.selection.getSelectedElement();
 
