@@ -28,19 +28,21 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Title from '@ckeditor/ckeditor5-heading/src/title';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 
 // Custom Plugins
-import CustomCKFinderUploadAdapter from './upload-adapter';
-import ConvertDivAttributes from './allow-div-plugin';
-import AllowLinkTarget from './allow-link-target';
-import AddTargetToExternalLinks from './add-target-to-link';
-import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
+import CustomCKFinderUploadAdapter from './plugins/CustomUploadAdapter/upload-adapter';
+import ConvertDivAttributes from './plugins/AllowDivPlugin/allow-div-plugin';
+import AllowLinkTarget from './plugins/AllowLinkTargetPlugin/allow-link-target';
+import AddTargetToExternalLinks from './plugins/AddTargetToLinkPlugin/add-target-to-link';
+
+import ImageModal from './plugins/ImageModalPlugin/image-modal';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
-	CustomCKFinderUploadAdapter,
+	// CK Plugins
 	Essentials,
 	Autoformat,
 	Bold,
@@ -63,10 +65,12 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Title,
 	Underline,
-	ConvertDivAttributes,
+	TextTransformation,
+	// Custom Plugins
 	AddTargetToExternalLinks,
+	ConvertDivAttributes,
 	AllowLinkTarget,
-	TextTransformation
+	CustomCKFinderUploadAdapter
 ];
 
 // Editor configuration.
@@ -82,7 +86,6 @@ ClassicEditor.defaultConfig = {
 			'bold',
 			'italic',
 			'underline',
-			'horizontalLine',
 			'|',
 			'bulletedList',
 			'numberedList',
@@ -105,7 +108,8 @@ ClassicEditor.defaultConfig = {
 			'imageStyle:full',
 			'imageStyle:side',
 			'|',
-			'imageTextAlternative'
+			'imageTextAlternative',
+			'imageModal'
 		],
 		resizeUnit: 'px',
 		upload: {
@@ -113,7 +117,7 @@ ClassicEditor.defaultConfig = {
 		},
 		imageResize: {
 			enable: true
-		},
+		}
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
