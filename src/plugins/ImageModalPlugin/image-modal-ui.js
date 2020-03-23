@@ -1,6 +1,6 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import fullWidthIcon from '@ckeditor/ckeditor5-core/theme/icons/check.svg';
+import checkIcon from '@ckeditor/ckeditor5-core/theme/icons/check.svg';
 
 export default class ImageModalUI extends Plugin {
 	static get pluginName() {
@@ -21,9 +21,9 @@ export default class ImageModalUI extends Plugin {
 			const view = new ButtonView( locale );
 
 			view.set( {
-				label: 'Img Modal',
+				label: 'Mark as Popup',
 				tooltip: true,
-				icon: fullWidthIcon,
+				icon: checkIcon,
 				isToggleable: true
 			} );
 
@@ -31,7 +31,7 @@ export default class ImageModalUI extends Plugin {
 			view.bind( 'isOn' ).to( command, 'value', value => value === true );
 
 			this.listenTo( view, 'execute', () => {
-				editor.execute( 'imageModalCmd', { value: 'imageModal' } );
+				editor.execute( 'imageModalCmd' );
 				editor.editing.view.focus();
 			} );
 

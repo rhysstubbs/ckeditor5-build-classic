@@ -3,7 +3,7 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ImageModalEditing from './image-modal-editing';
 import ImageModalUI from './image-modal-ui';
 
-export default class ImageStyle extends Plugin {
+export default class ImageModal extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

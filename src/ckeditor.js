@@ -16,7 +16,6 @@ import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
-import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
@@ -29,18 +28,19 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 import Title from '@ckeditor/ckeditor5-heading/src/title';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
+import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 
-// Custom Plugins
 import CustomCKFinderUploadAdapter from './plugins/CustomUploadAdapter/upload-adapter';
 import ConvertDivAttributes from './plugins/AllowDivPlugin/allow-div-plugin';
 import AllowLinkTarget from './plugins/AllowLinkTargetPlugin/allow-link-target';
 import AddTargetToExternalLinks from './plugins/AddTargetToLinkPlugin/add-target-to-link';
+import ImageModal from './plugins/ImageModalPlugin/image-modal';
 
-export default class ClassicEditor extends ClassicEditorBase {}
+import CustomFigureAttributes from './plugins/CustomFigureAttributes/custom-figure-attributes-plugin';
 
-// Plugins to include in the build.
+class ClassicEditor extends ClassicEditorBase {}
+
 ClassicEditor.builtinPlugins = [
-	// CK Plugins
 	Essentials,
 	Autoformat,
 	Bold,
@@ -49,12 +49,14 @@ ClassicEditor.builtinPlugins = [
 	CKFinder,
 	EasyImage,
 	Heading,
+	CustomFigureAttributes,
 	Image,
+	ImageModal,
 	ImageCaption,
-	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
 	ImageResize,
+	ImageStyle,
 	Indent,
 	Link,
 	List,
@@ -64,14 +66,12 @@ ClassicEditor.builtinPlugins = [
 	Title,
 	Underline,
 	TextTransformation,
-	// Custom Plugins
 	AddTargetToExternalLinks,
 	ConvertDivAttributes,
 	AllowLinkTarget,
 	CustomCKFinderUploadAdapter
 ];
 
-// Editor configuration.
 ClassicEditor.defaultConfig = {
 	title: {
 		placeholder: 'Headline ...'
@@ -116,7 +116,7 @@ ClassicEditor.defaultConfig = {
 		imageResize: {
 			enable: true
 		}
-	},
-	// This value must be kept in sync with the language defined in webpack.config.js.
-	language: 'en'
+	}
 };
+
+export default ClassicEditor;

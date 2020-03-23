@@ -9,22 +9,22 @@ export default class ImageModalCommand extends Command {
 		this.isEnabled = isImage( element );
 
 		if ( !element ) {
-			this.value = null;
-		} else if ( element.classList.includes( 'img-modal' ) ) {
+			this.value = false;
+		} else if ( element._attrs.has( 'customClass' ) && element._attrs.get( 'customClass' ).includes( 'img-popup' ) ) {
 			this.value = true;
 		} else {
 			this.value = false;
 		}
 	}
-
 	execute() {
 		const model = this.editor.model;
 		const imageElement = model.document.selection.getSelectedElement();
+
 		model.change( writer => {
 			if ( this.value ) {
-				writer.removeAttribute( 'class', imageElement );
+				writer.removeAttribute( 'customClass', imageElement );
 			} else {
-				writer.setAttribute( 'class', 'img-modal', imageElement );
+				writer.setAttribute( 'customClass', 'img-popup', imageElement );
 			}
 		} );
 	}
