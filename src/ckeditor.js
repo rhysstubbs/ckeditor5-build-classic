@@ -10,7 +10,6 @@ import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
-import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
@@ -19,10 +18,8 @@ import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
-import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
-import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Title from '@ckeditor/ckeditor5-heading/src/title';
@@ -45,7 +42,6 @@ ClassicEditor.builtinPlugins = [
 	Autoformat,
 	Bold,
 	Italic,
-	BlockQuote,
 	CKFinder,
 	EasyImage,
 	Heading,
@@ -57,10 +53,8 @@ ClassicEditor.builtinPlugins = [
 	ImageUpload,
 	ImageResize,
 	ImageStyle,
-	Indent,
 	Link,
 	List,
-	MediaEmbed,
 	Paragraph,
 	PasteFromOffice,
 	Title,
@@ -87,15 +81,9 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'bulletedList',
 			'numberedList',
-			'blockQuote',
-			'|',
-			'outdent',
-			'indent',
 			'|',
 			'link',
 			'imageUpload',
-			'|',
-			'mediaEmbed',
 			'|',
 			'undo',
 			'redo'
