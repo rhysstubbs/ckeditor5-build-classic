@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-undef */
 /**
  * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
@@ -40,18 +42,34 @@ export default class CustomCKFinderUploadAdapter extends Plugin {
 		return 'CustomCKFinderUploadAdapter';
 	}
 
+	static get rules() {
+		return {
+			minWidth: 800,
+			minHeight: 0
+		};
+	}
+
 	/**
 	 * @inheritDoc
 	 */
 	init() {
 		const url = this.editor.config.get( 'ckfinder.uploadUrl' );
 
+		let rules = { ...CustomCKFinderUploadAdapter.rules };
+		const userRules = this.editor.config.get( 'ckfinder.validation' );
+
+		if ( typeof userRules !== 'undefined' && Object.keys( userRules ).length > 0 ) {
+			rules = { ...rules, ...this.editor.config.get( 'ckfinder.validation' ) };
+		}
+
 		if ( !url ) {
 			return;
 		}
 
 		// Register CKFinderAdapter
-		this.editor.plugins.get( FileRepository ).createUploadAdapter = loader => new CustomUploadAdapter( loader, url, this.editor.t );
+		this.editor.plugins
+			.get( FileRepository )
+			.createUploadAdapter = loader => new CustomUploadAdapter( loader, url, rules, this.editor.t );
 	}
 }
 
@@ -69,7 +87,7 @@ class CustomUploadAdapter {
 	 * @param {String} url
 	 * @param {module:utils/locale~Locale#t} t
 	 */
-	constructor( loader, url, t ) {
+	constructor( loader, url, rules, t ) {
 		/**
 		 * FileLoader instance to use during the upload.
 		 *
@@ -83,6 +101,13 @@ class CustomUploadAdapter {
 		 * @member {String} #url
 		 */
 		this.url = url;
+
+		/**
+		 * File Validation Rules.
+		 *
+		 * @member {Object} #rules
+		 */
+		this.rules = rules;
 
 		/**
 		 * Locale translation method.
@@ -101,6 +126,27 @@ class CustomUploadAdapter {
 	upload() {
 		return this.loader.file.then( file => {
 			return new Promise( ( resolve, reject ) => {
+				if ( this.rules.minWidth > 0 || this.rules.minHeight > 0 ) {
+					// eslint-disable-next-line no-undef
+					const fileReader = new FileReader();
+					fileReader.readAsDataURL( file );
+					fileReader.onload = () => {
+						// eslint-disable-next-line no-undef
+						const img = document.createElement( 'img' );
+						img.src = fileReader.result;
+
+						if ( img.width < this.rules.minWidth ) {
+							const err = 'The image is smaller than the recommended size (800px wide). Do you still want to upload it?';
+							const confirmed = confirm( err );						// eslint-disable-next-line no-undef
+							// eslint-disable-next-line no-alert
+
+							if ( !confirmed ) {
+								reject();
+							}
+						}
+					};
+				}
+
 				this._initRequest();
 				this._initListeners( resolve, reject, file );
 				this._sendRequest( file );
