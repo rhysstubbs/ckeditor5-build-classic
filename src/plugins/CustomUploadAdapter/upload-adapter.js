@@ -53,20 +53,18 @@ export default class CustomCKFinderUploadAdapter extends Plugin {
 	 * @inheritDoc
 	 */
 	init() {
-		const url = this.editor.config.get( 'ckfinder.uploadUrl' );
+		const config = this.editor.config.get( 'ckfinder' );
+
+		const url = config.uploadUrl || '';
 
 		let rules = { ...CustomCKFinderUploadAdapter.rules };
+
 		const userRules = this.editor.config.get( 'ckfinder.validation' );
 
 		if ( typeof userRules !== 'undefined' && Object.keys( userRules ).length > 0 ) {
 			rules = { ...rules, ...this.editor.config.get( 'ckfinder.validation' ) };
 		}
 
-		if ( !url ) {
-			return;
-		}
-
-		// Register CKFinderAdapter
 		this.editor.plugins
 			.get( FileRepository )
 			.createUploadAdapter = loader => new CustomUploadAdapter( loader, url, rules, this.editor.t );
@@ -172,8 +170,7 @@ class CustomUploadAdapter {
 	 */
 	_initRequest() {
 		const xhr = this.xhr = new XMLHttpRequest();
-
-		xhr.open( 'POST', this.url, true );
+		xhr.open( 'POST', this.url(), true );
 		xhr.responseType = 'json';
 	}
 
