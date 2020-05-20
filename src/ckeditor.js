@@ -84,15 +84,22 @@ ClassicEditor.defaultConfig = {
 	},
 	image: {
 		toolbar: [
+			'imageTextAlternative',
+			'imageModal',
+			'|',
 			'imageStyle:full',
+			'|',
 			'imageStyle:alignLeft',
 			'imageStyle:alignCenter',
-			'imageStyle:alignRight',
-			'|',
-			'imageTextAlternative',
-			'imageModal'
+			'imageStyle:alignRight'
 		],
 		resizeUnit: 'px',
+		styles: [
+			'full',
+			'alignLeft',
+			'alignCenter',
+			'alignRight'
+		],
 		upload: {
 			types: [ 'png', 'jpeg', 'jpg', 'gif' ]
 		},
