@@ -24,9 +24,11 @@ import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import CustomCKFinderUploadAdapter from './plugins/CustomUploadAdapter/upload-adapter';
 import ConvertDivAttributes from './plugins/AllowDivPlugin/allow-div-plugin';
 import AllowLinkTarget from './plugins/AllowLinkTargetPlugin/allow-link-target';
-import AddTargetToExternalLinks from './plugins/AddTargetToLinkPlugin/add-target-to-link';
 import ImageModal from './plugins/ImageModalPlugin/image-modal';
 import CustomFigureAttributes from './plugins/CustomFigureAttributes/custom-figure-attributes-plugin';
+import AllowCSSClassesPlugin from './plugins/AllowCSSClassPlugin/allow-css-classes-plugin';
+import AllowIDPlugin from './plugins/AllowIdPlugin/allow-element-ids-plugin';
+import ElementAddAttributes from './plugins/AddAttributeToElementPlugin/add-attribute-to-element';
 
 class ClassicEditor extends ClassicEditorBase {}
 
@@ -46,17 +48,19 @@ ClassicEditor.builtinPlugins = [
 	ImageUpload,
 	ImageResize,
 	ImageStyle,
+	PasteFromOffice,
+	Title,
 	Link,
 	List,
 	Paragraph,
-	PasteFromOffice,
-	Title,
 	Underline,
 	TextTransformation,
-	AddTargetToExternalLinks,
 	ConvertDivAttributes,
 	AllowLinkTarget,
-	CustomCKFinderUploadAdapter
+	CustomCKFinderUploadAdapter,
+	AllowCSSClassesPlugin,
+	AllowIDPlugin,
+	ElementAddAttributes
 ];
 
 ClassicEditor.defaultConfig = {
@@ -78,8 +82,15 @@ ClassicEditor.defaultConfig = {
 			'link',
 			'imageUpload',
 			'|',
+			'elementAddAttributes',
+			'|',
 			'undo',
 			'redo'
+		]
+	},
+	heading2: {
+		toolbar: [
+			'elementAddAttributes'
 		]
 	},
 	image: {
@@ -108,16 +119,30 @@ ClassicEditor.defaultConfig = {
 		}
 	},
 	link: {
-		addTargetToExternalLinks: true,
-		decorators: [
-			{
+		addTargetToExternalLinks: false,
+		decorators: {
+			downloadable: {
 				mode: 'manual',
 				label: 'Downloadable',
 				attributes: {
 					download: 'download'
 				}
+			},
+			target: {
+				mode: 'automatic',
+				callback: url => !url.startsWith( '#' ) && url[ 0 ] !== '#',
+				attributes: {
+					target: '_blank'
+				}
+			},
+			external: {
+				mode: 'automatic',
+				callback: url => !url.includes( 'thinkspain.com' ) && url[ 0 ] !== '#',
+				attributes: {
+					rel: 'noopener noreferrer'
+				}
 			}
-		]
+		}
 	},
 	heading: {
 		options: [
