@@ -28,7 +28,6 @@ import ImageModal from './plugins/ImageModalPlugin/image-modal';
 import CustomFigureAttributes from './plugins/CustomFigureAttributes/custom-figure-attributes-plugin';
 import AllowCSSClassesPlugin from './plugins/AllowCSSClassPlugin/allow-css-classes-plugin';
 import AllowIDPlugin from './plugins/AllowIdPlugin/allow-element-ids-plugin';
-import ElementAddAttributes from './plugins/AddAttributeToElementPlugin/add-attribute-to-element';
 
 class ClassicEditor extends ClassicEditorBase {}
 
@@ -59,8 +58,7 @@ ClassicEditor.builtinPlugins = [
 	AllowLinkTarget,
 	CustomCKFinderUploadAdapter,
 	AllowCSSClassesPlugin,
-	AllowIDPlugin,
-	ElementAddAttributes
+	AllowIDPlugin
 ];
 
 ClassicEditor.defaultConfig = {
