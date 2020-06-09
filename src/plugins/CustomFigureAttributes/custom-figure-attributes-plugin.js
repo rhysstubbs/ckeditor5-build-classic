@@ -73,34 +73,4 @@ function findViewChild( viewElement, viewElementName, conversionApi ) {
 	return viewChildren.find( item => item.is( viewElementName ) );
 }
 
-// function upcastAttribute( viewElementName, viewAttribute, modelAttribute ) {
-// 	return dispatcher => dispatcher.on( `element:${ viewElementName }`, ( evt, data, conversionApi ) => {
-// 		const viewItem = data.viewItem;
-// 		const modelRange = data.modelRange;
-
-// 		const modelElement = modelRange && modelRange.start.nodeAfter;
-
-// 		if ( !modelElement ) {
-// 			return;
-// 		}
-
-// 		conversionApi.writer.setAttribute( modelAttribute, viewItem.getAttribute( viewAttribute ), modelElement );
-// 	} );
-// }
-
-// function downcastAttribute( modelElementName, viewElementName, viewAttribute, modelAttribute ) {
-// 	return dispatcher => dispatcher.on( `insert:${ modelElementName }`, ( evt, data, conversionApi ) => {
-// 		const modelElement = data.item;
-
-// 		const viewFigure = conversionApi.mapper.toViewElement( modelElement );
-// 		const viewElement = findViewChild( viewFigure, viewElementName, conversionApi );
-
-// 		if ( !viewElement ) {
-// 			return;
-// 		}
-
-// 		conversionApi.writer.setAttribute( viewAttribute, modelElement.getAttribute( modelAttribute ), viewElement );
-// 	} );
-// }
-
 export default CustomFigureAttributes;
