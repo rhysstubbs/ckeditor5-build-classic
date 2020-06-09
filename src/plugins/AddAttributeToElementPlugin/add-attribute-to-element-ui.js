@@ -1,10 +1,11 @@
+/* eslint-disable no-undef */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ContextualBalloon from '@ckeditor/ckeditor5-ui/src/panel/balloon/contextualballoon';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 import pencilIcon from '@ckeditor/ckeditor5-core/theme/icons/pencil.svg';
 import ElementAddAttributesFormView from './ui/add-attribute-to-element-view';
 import clickOutsideHandler from '@ckeditor/ckeditor5-ui/src/bindings/clickoutsidehandler';
-import { repositionContextualBalloon, getBalloonPositionData } from '@ckeditor/ckeditor5-image/src/image/ui/utils';
+import BalloonPanelView from '@ckeditor/ckeditor5-ui/src/panel/balloon/balloonpanelview';
 
 class ElementAddAttributesUI extends Plugin {
 	static get requires() {
@@ -36,7 +37,8 @@ class ElementAddAttributesUI extends Plugin {
 			view.set( {
 				label: t( 'Set element id attribute' ),
 				icon: pencilIcon,
-				tooltip: true
+				tooltip: true,
+				class: 'element-add-attributes-btn'
 			} );
 
 			view.bind( 'isEnabled' ).to( command, 'isEnabled' );
@@ -57,13 +59,12 @@ class ElementAddAttributesUI extends Plugin {
 		this._balloon = this.editor.plugins.get( 'ContextualBalloon' );
 
 		this._form = new ElementAddAttributesFormView( editor.locale );
-
 		// Render the form so its #element is available for clickOutsideHandler.
 		this._form.render();
 
 		this.listenTo( this._form, 'submit', () => {
 			editor.execute( 'elementAddAttributes', {
-				newValue: this._form.labeledInput.fieldView.element.value
+				newValue: this._form.labeledInput.inputView.element.value
 			} );
 
 			this._hideForm( true );
@@ -83,8 +84,6 @@ class ElementAddAttributesUI extends Plugin {
 		this.listenTo( editor.ui, 'update', () => {
 			if ( !viewDocument.selection ) {
 				this._hideForm( true );
-			} else if ( this._isVisible ) {
-				repositionContextualBalloon( editor );
 			}
 		} );
 
@@ -107,9 +106,22 @@ class ElementAddAttributesUI extends Plugin {
 		const labeledInput = this._form.labeledInput;
 
 		if ( !this._isInBalloon ) {
+			const defaultPositions = BalloonPanelView.defaultPositions;
+			const target = document.querySelector( '.element-add-attributes-btn' );
+
 			this._balloon.add( {
 				view: this._form,
-				position: getBalloonPositionData( editor )
+				position: {
+					target,
+					positions: [
+						defaultPositions.northArrowSouth,
+						defaultPositions.northArrowSouthWest,
+						defaultPositions.northArrowSouthEast,
+						defaultPositions.southArrowNorth,
+						defaultPositions.southArrowNorthWest,
+						defaultPositions.southArrowNorthEast
+					]
+				}
 			} );
 		}
 
@@ -118,9 +130,9 @@ class ElementAddAttributesUI extends Plugin {
 		// stays unaltered) and re-opened it without changing the value of the command, they would see the
 		// old value instead of the actual value of the command.
 		// https://github.com/ckeditor/ckeditor5-image/issues/114
-		labeledInput.fieldView.value = labeledInput.fieldView.element.value = command.value || '';
+		labeledInput.inputView.value = labeledInput.inputView.element.value = command.value || '';
 
-		this._form.labeledInput.fieldView.select();
+		this._form.labeledInput.inputView.select();
 	}
 
 	_hideForm( focusEditable ) {

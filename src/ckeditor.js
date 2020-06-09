@@ -28,6 +28,8 @@ import ImageModal from './plugins/ImageModalPlugin/image-modal';
 import CustomFigureAttributes from './plugins/CustomFigureAttributes/custom-figure-attributes-plugin';
 import AllowCSSClassesPlugin from './plugins/AllowCSSClassPlugin/allow-css-classes-plugin';
 import AllowIDPlugin from './plugins/AllowIdPlugin/allow-element-ids-plugin';
+import ElementAddAttributes from './plugins/AddAttributeToElementPlugin/add-attribute-to-element';
+import CustomHeadingAttributes from './plugins/CustomHeadingAttributes/custom-heading-attributes-plugin';
 
 class ClassicEditor extends ClassicEditorBase {}
 
@@ -39,6 +41,7 @@ ClassicEditor.builtinPlugins = [
 	CKFinder,
 	EasyImage,
 	Heading,
+	CustomHeadingAttributes,
 	CustomFigureAttributes,
 	Image,
 	ImageModal,
@@ -52,13 +55,16 @@ ClassicEditor.builtinPlugins = [
 	Link,
 	List,
 	Paragraph,
+	AllowCSSClassesPlugin,
+	AllowIDPlugin,
 	Underline,
 	TextTransformation,
 	ConvertDivAttributes,
 	AllowLinkTarget,
 	CustomCKFinderUploadAdapter,
 	AllowCSSClassesPlugin,
-	AllowIDPlugin
+	AllowIDPlugin,
+	ElementAddAttributes
 ];
 
 ClassicEditor.defaultConfig = {
@@ -139,6 +145,13 @@ ClassicEditor.defaultConfig = {
 				attributes: {
 					rel: 'noopener noreferrer'
 				}
+			},
+			local: {
+				mode: 'automatic',
+				callback: url => url.startsWith( '#' ),
+				attributes: {
+					class: 'local-link'
+				}
 			}
 		}
 	},
@@ -166,6 +179,12 @@ ClassicEditor.defaultConfig = {
 				view: 'h4',
 				title: 'Heading 4',
 				class: 'ck-heading_heading4'
+			},
+			{
+				model: 'heading5',
+				view: 'h5',
+				title: 'Heading 5',
+				class: 'ck-heading_heading5'
 			}
 		]
 	},

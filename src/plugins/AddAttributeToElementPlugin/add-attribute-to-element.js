@@ -1,6 +1,6 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ElementAddAttributesEditing from './add-attribute-to-element-editing';
-import ElementAddAttributesUI from './add-attribute-to-elemtn-ui';
+import ElementAddAttributesUI from './add-attribute-to-element-ui';
 
 class ElementAddAttributes extends Plugin {
 	static get requires() {
