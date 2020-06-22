@@ -30,6 +30,7 @@ import AllowCSSClassesPlugin from './plugins/AllowCSSClassPlugin/allow-css-class
 import AllowIDPlugin from './plugins/AllowIdPlugin/allow-element-ids-plugin';
 import ElementAddAttributes from './plugins/AddAttributeToElementPlugin/add-attribute-to-element';
 import CustomHeadingAttributes from './plugins/CustomHeadingAttributes/custom-heading-attributes-plugin';
+import NormalisePastedHTMLContent from './plugins/NormalisePastedHTMLContent/normalise-pasted-html-content-plugin';
 
 class ClassicEditor extends ClassicEditorBase {}
 
@@ -64,7 +65,8 @@ ClassicEditor.builtinPlugins = [
 	CustomCKFinderUploadAdapter,
 	AllowCSSClassesPlugin,
 	AllowIDPlugin,
-	ElementAddAttributes
+	ElementAddAttributes,
+	NormalisePastedHTMLContent
 ];
 
 ClassicEditor.defaultConfig = {
@@ -125,30 +127,23 @@ ClassicEditor.defaultConfig = {
 	link: {
 		addTargetToExternalLinks: false,
 		decorators: {
-			downloadable: {
-				mode: 'manual',
-				label: 'Downloadable',
-				attributes: {
-					download: 'download'
-				}
-			},
 			target: {
 				mode: 'automatic',
-				callback: url => !url.startsWith( '#' ) && url[ 0 ] !== '#',
+				callback: url => !!url && !url.startsWith( '#' ) && url[ 0 ] !== '#' && !url.includes( 'thinkspain.com' ) && !url.includes( 'thinkwebcontent.com' ),
 				attributes: {
 					target: '_blank'
 				}
 			},
 			external: {
 				mode: 'automatic',
-				callback: url => !url.includes( 'thinkspain.com' ) && url[ 0 ] !== '#',
+				callback: url => !!url && !url.includes( 'thinkspain.com' ) && !url.includes( 'thinkwebcontent.com' ) && url[ 0 ] !== '#',
 				attributes: {
-					rel: 'noopener noreferrer'
+					rel: 'noopener nofollow'
 				}
 			},
 			local: {
 				mode: 'automatic',
-				callback: url => url.startsWith( '#' ),
+				callback: url => !!url && url.startsWith( '#' ),
 				attributes: {
 					class: 'local-link'
 				}

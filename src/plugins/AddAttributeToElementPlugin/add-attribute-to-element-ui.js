@@ -40,8 +40,10 @@ class ElementAddAttributesUI extends Plugin {
 				tooltip: true,
 				class: 'element-add-attributes-btn'
 			} );
-			console.log( editor )
-			if ( editor.config._config.hasOwnProperty( 'elementAddAttributes' ) && !editor.config._config.elementAddAttributes.enabled ) {
+
+			const enabled = editor.config.get( 'elementAddAttributes.enabled' ) || false;
+
+			if ( !enabled ) {
 				view.isEnabled = false;
 			} else {
 				view.bind( 'isEnabled' ).to( command, 'isEnabled' );
