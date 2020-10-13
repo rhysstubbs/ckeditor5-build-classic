@@ -32,6 +32,8 @@ import ElementAddAttributes from './plugins/AddAttributeToElementPlugin/add-attr
 import CustomHeadingAttributes from './plugins/CustomHeadingAttributes/custom-heading-attributes-plugin';
 import NormalisePastedHTMLContent from './plugins/NormalisePastedHTMLContent/normalise-pasted-html-content-plugin';
 
+import { isExternal } from './utils';
+
 class ClassicEditor extends ClassicEditorBase {}
 
 ClassicEditor.builtinPlugins = [
@@ -129,16 +131,17 @@ ClassicEditor.defaultConfig = {
 		decorators: {
 			target: {
 				mode: 'automatic',
-				callback: url => !!url && !url.startsWith( '#' ) && url[ 0 ] !== '#' && !url.includes( 'thinkspain.com' ) && !url.includes( 'thinkwebcontent.com' ),
+				callback: isExternal,
 				attributes: {
 					target: '_blank'
 				}
 			},
 			external: {
 				mode: 'automatic',
-				callback: url => !!url && !url.includes( 'thinkspain.com' ) && !url.includes( 'thinkwebcontent.com' ) && url[ 0 ] !== '#',
+				callback: isExternal,
 				attributes: {
-					rel: 'noopener nofollow'
+					rel: 'noopener nofollow',
+					class: 'external-link'
 				}
 			},
 			local: {

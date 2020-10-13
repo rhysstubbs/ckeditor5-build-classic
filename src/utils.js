@@ -81,3 +81,18 @@ function generateToken( length ) {
 
 	return result;
 }
+
+// Determines whether the given URL is external or not
+//
+// @param {String} url
+// @returns {Boolean}
+export function isExternal( url ) {
+	if ( url[ 0 ] !== '/' &&
+		url[ 0 ] !== '#' &&
+		!url.includes( 'thinkspain.com' ) &&
+		!url.includes( 'thinkwebcontent.com' )
+	) {
+		return true;
+	}
+	return false;
+}
