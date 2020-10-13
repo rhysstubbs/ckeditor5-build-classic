@@ -87,9 +87,10 @@ function generateToken( length ) {
 // @param {String} url
 // @returns {Boolean}
 export function isExternal( url ) {
-	if ( url[ 0 ] !== '/' &&
-		url[ 0 ] !== '#' &&
-		!url.includes( 'thinkspain.com' ) &&
+	if ( url.startsWith( '#' ) || url.startsWith( '/' ) ) {
+		return false;
+	}
+	if ( !url.includes( 'thinkspain.com' ) &&
 		!url.includes( 'thinkwebcontent.com' )
 	) {
 		return true;
