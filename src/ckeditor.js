@@ -31,6 +31,7 @@ import AllowIDPlugin from './plugins/AllowIdPlugin/allow-element-ids-plugin';
 import ElementAddAttributes from './plugins/AddAttributeToElementPlugin/add-attribute-to-element';
 import CustomHeadingAttributes from './plugins/CustomHeadingAttributes/custom-heading-attributes-plugin';
 import NormalisePastedHTMLContent from './plugins/NormalisePastedHTMLContent/normalise-pasted-html-content-plugin';
+import AddImageDimentionAttributesPlugin from './plugins/AddImageHeightAttributePlugin/add-image-height-attribute';
 
 import { isExternal } from './utils';
 
@@ -68,7 +69,8 @@ ClassicEditor.builtinPlugins = [
 	AllowCSSClassesPlugin,
 	AllowIDPlugin,
 	ElementAddAttributes,
-	NormalisePastedHTMLContent
+	NormalisePastedHTMLContent,
+	AddImageDimentionAttributesPlugin
 ];
 
 ClassicEditor.defaultConfig = {
