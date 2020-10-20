@@ -87,9 +87,6 @@ function generateToken( length ) {
 // @param {String} url
 // @returns {Boolean}
 export function isExternal( url ) {
-	if ( !url ) {
-		return false;
-	}
 	if ( url.startsWith( '#' ) || url.startsWith( '/' ) ) {
 		return false;
 	}
