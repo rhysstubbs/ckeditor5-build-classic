@@ -23,7 +23,6 @@ import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 
 import CustomCKFinderUploadAdapter from './plugins/CustomUploadAdapter/upload-adapter';
 import ConvertDivAttributes from './plugins/AllowDivPlugin/allow-div-plugin';
-import AllowLinkTarget from './plugins/AllowLinkTargetPlugin/allow-link-target';
 import ImageModal from './plugins/ImageModalPlugin/image-modal';
 import CustomFigureAttributes from './plugins/CustomFigureAttributes/custom-figure-attributes-plugin';
 import AllowCSSClassesPlugin from './plugins/AllowCSSClassPlugin/allow-css-classes-plugin';
@@ -64,7 +63,6 @@ ClassicEditor.builtinPlugins = [
 	Underline,
 	TextTransformation,
 	ConvertDivAttributes,
-	AllowLinkTarget,
 	CustomCKFinderUploadAdapter,
 	AllowCSSClassesPlugin,
 	AllowIDPlugin,
@@ -131,19 +129,13 @@ ClassicEditor.defaultConfig = {
 	link: {
 		addTargetToExternalLinks: false,
 		decorators: {
-			target: {
-				mode: 'automatic',
-				callback: isExternal,
-				attributes: {
-					target: '_blank'
-				}
-			},
 			external: {
 				mode: 'automatic',
-				callback: isExternal,
+				callback: url => !!url && isExternal( url ),
 				attributes: {
 					rel: 'noopener nofollow',
-					class: 'external-link'
+					class: 'external-link',
+					target: '_blank'
 				}
 			},
 			local: {
