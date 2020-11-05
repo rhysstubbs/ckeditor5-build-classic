@@ -36,7 +36,6 @@ class NormalisePastedHTMLContent extends Plugin {
 				const url = new URL( images[ i ].src );
 				if ( !allowedUrls.includes( url.hostname ) ) {
 					imagesToRemove.add( images[ i ].src );
-					alert( 'Please insert images using the toolbar instead of copying & pasting.' );
 				}
 			}
 
@@ -50,6 +49,11 @@ class NormalisePastedHTMLContent extends Plugin {
 			clipboardPlugin.fire( 'inputTransformation', { content, dataTransfer } );
 			editingView.scrollToTheSelection();
 			evt.stop();
+			if ( imagesToRemove.size > 0 ) {
+				setTimeout( () => {
+					alert( 'Please insert images using the toolbar instead of copying & pasting.' );
+				}, 50 );
+			}
 		} );
 	}
 }
