@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-alert */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
 class NormalisePastedHTMLContent extends Plugin {
@@ -34,8 +36,6 @@ class NormalisePastedHTMLContent extends Plugin {
 				const url = new URL( images[ i ].src );
 				if ( !allowedUrls.includes( url.hostname ) ) {
 					imagesToRemove.add( images[ i ].src );
-					// eslint-disable-next-line no-alert
-					// eslint-disable-next-line no-undef
 					alert( 'Please insert images using the toolbar instead of copying & pasting.' );
 				}
 			}
