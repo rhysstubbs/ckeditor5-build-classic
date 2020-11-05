@@ -22,6 +22,7 @@ class NormalisePastedHTMLContent extends Plugin {
 			const dataTransfer = data.dataTransfer;
 			let content = dataTransfer.getData( 'text/html' );
 
+			// eslint-disable-next-line no-undef
 			const contentCopy = document.createElement( 'div' );
 			contentCopy.innerHTML = content;
 
@@ -29,9 +30,13 @@ class NormalisePastedHTMLContent extends Plugin {
 			const imagesToRemove = new Set();
 
 			for ( let i = 0; i < images.length; i++ ) {
+				// eslint-disable-next-line no-undef
 				const url = new URL( images[ i ].src );
 				if ( !allowedUrls.includes( url.hostname ) ) {
 					imagesToRemove.add( images[ i ].src );
+					// eslint-disable-next-line no-alert
+					// eslint-disable-next-line no-undef
+					alert( 'Please insert images using the toolbar instead of copying & pasting.' );
 				}
 			}
 
